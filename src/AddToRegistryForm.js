@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class extends React.Component {
 
+//NOTE how 'onChange' is used in the input fields here
     constructor () {
         super();
         this.state = {
@@ -22,17 +23,21 @@ export default class extends React.Component {
 
     render () {
         return (
-            <form>
+            <form onSubmit={() => this.props.onSend(this.state)}>
                 <div className="form-group">
                     <label>Item name: </label>
-                    <input type="text" id="item-name-field" />
+                    <input type="text" id="item-name-field" onChange={this.updateItemName} />
                 </div>
                 <div className="form-group">
                     <label>Item price: </label>
-                    <input type="text" id="item-price-field" />
+                    <input type="text" id="item-price-field" onChange={this.updateItemPrice} />
                 </div>
                 <button type="submit">Add item to registry</button>
             </form>
         );
     }
 }
+
+/*QUESTION WHY DOES THIS work in the button tag?
+<button type="submit" onclick={() => this.props.createNewItemAction, this.props.onSend(this.state)}>
+*/
